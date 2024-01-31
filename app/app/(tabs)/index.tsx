@@ -8,7 +8,7 @@ const orchestras = [
   'Anibal Troilo',
   'Rodolfo Biagi',
   'Juan DArienzo'
-];
+] as const;
 
 const images = {
   'Carlos Di Sarli': require('@/assets/images/carlos_di_sarli.jpg'),
@@ -21,7 +21,7 @@ const images = {
 export default function HomeScreen() {
   const navigation = useNavigation();
 
-  const handlePress = (orchestra) => {
+  const handlePress = (orchestra: typeof orchestras[number]) => {
     // Navigate to the search screen with the orchestra query
     navigation.navigate('searchScreen', { query: orchestra });
   };
@@ -37,7 +37,7 @@ export default function HomeScreen() {
         <TouchableOpacity 
           key={index} 
           style={styles.buttonStyle}
-          // onPress={() => handlePress(orchestra)} 
+          onPress={() => handlePress(orchestra)} 
         >
           <Image source={images[orchestra]} style={styles.songAlbumArt} />
           <Text style={styles.buttonText}>{orchestra}</Text>
@@ -79,4 +79,5 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     marginBottom: 20, // Space between header and buttons
   },
+  centeredView: {}
 });
